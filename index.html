@@ -1,124 +1,294 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>PcFix Service — Ремонт компьютеров</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: #f8fafc;
-        }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-        h1, h2 {
-            color: #38bdf8;
-        }
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            background: #22c55e;
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 8px;
-        }
-        .section {
-            margin-top: 60px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            background: #020617;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-        }
-        .reviews {
-            background: #020617;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 80px;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>PcFix Service — Ремонт компьютеров</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #111a2e;
+      --accent: #22c55e;
+      --blue: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: radial-gradient(circle at top, #101b3a, #050914);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    h1, h2 {
+      color: #fff;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 90px 0 70px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 46px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#0f172a;
+      border:1px solid rgba(255,255,255,.08);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:14px;
+      color:#facc15;
+      margin-top:14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 25px;
+      padding: 16px 28px;
+      background: var(--accent);
+      color: #022c22;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 17px;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    }
+
+    section {
+      padding: 90px 0;
+    }
+
+    /* SERVICES */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .service {
+      background: var(--card);
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.04);
+    }
+
+    /* WHY */
+    .why {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .why div {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 16px;
+    }
+
+    /* REVIEWS */
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .review {
+      background: linear-gradient(180deg, #111a2e, #0b1220);
+      border-radius: 18px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.05);
+    }
+
+    .name {
+      font-weight: 600;
+    }
+
+    .stars {
+      color: #facc15;
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    small {
+      color: var(--muted);
+    }
+
+    /* ANIMATION */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .fade-delay-1 { animation-delay: .1s; }
+    .fade-delay-2 { animation-delay: .25s; }
+    .fade-delay-3 { animation-delay: .4s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      padding: 60px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-
-<div class="hero">
-    <h1>PcFix Service</h1>
-    <p>Ремонт компьютеров и ноутбуков<br>
-    Астана • Костанай • Павлодар</p>
-
-    <a class="btn" href="https://wa.me/77002320983?text=Здравствуйте!%20Нужен%20ремонт%20компьютера.">
-        Связаться в WhatsApp
-    </a>
-</div>
 
 <div class="container">
 
-    <div class="section">
-        <h2>Наши услуги</h2>
-        <ul>
-            <li>Ремонт компьютеров и ноутбуков</li>
-            <li>Установка и переустановка Windows</li>
-            <li>Установка драйверов и программ</li>
-            <li>Настройка и подключение принтеров</li>
-            <li>Настройка локальной сети и интернета</li>
-            <li>Диагностика и устранение неисправностей</li>
-        </ul>
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <h1>PcFix Service</h1>
+      <p>
+        Ремонт компьютеров и ноутбуков в Астане, Костанае и Павлодаре.
+        Установка Windows, драйверов, программ, принтеров и локальных сетей —
+        быстро и без лишних слов.
+      </p>
+
+      <div class="badge">⭐ 5.0 на 2ГИС</div>
+
+      <a class="btn" href="https://wa.me/77002320983?text=Здравствуйте!%20Нужна%20помощь%20с%20компьютером.">
+        Связаться в WhatsApp
+      </a>
     </div>
 
-    <div class="section">
-        <h2>Почему выбирают нас</h2>
-        <ul>
-            <li>Быстро и без лишних переплат</li>
-            <li>Понятные объяснения</li>
-            <li>Опыт работы с домашними и офисными ПК</li>
-            <li>Работаем аккуратно и по факту</li>
-        </ul>
-    </div>
+    <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1200" alt="PcFix Service">
+  </div>
 
-    <div class="section">
-        <h2>Отзывы клиентов</h2>
-        <div class="reviews">
-            <p>⭐⭐⭐⭐⭐ Отличный сервис, всё сделали быстро!</p>
-            <p>⭐⭐⭐⭐⭐ Помогли с ноутбуком и принтером.</p>
-            <p><em>Отзывы из 2ГИС (можно добавить скриншоты)</em></p>
+  <!-- SERVICES -->
+  <section>
+    <h2>Наши услуги</h2>
+    <div class="services">
+      <div class="service">✔ Ремонт компьютеров и ноутбуков</div>
+      <div class="service">✔ Установка и переустановка Windows</div>
+      <div class="service">✔ Установка драйверов и программ</div>
+      <div class="service">✔ Подключение и настройка принтеров</div>
+      <div class="service">✔ Настройка локальной сети и интернета</div>
+      <div class="service">✔ Диагностика и устранение неисправностей</div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section>
+    <h2>Почему выбирают PcFix Service</h2>
+    <div class="why">
+      <div>Быстро и без лишних переплат</div>
+      <div>Понятные объяснения без «умных» слов</div>
+      <div>Работаем аккуратно и по факту</div>
+      <div>Опыт с домашними и офисными ПК</div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section>
+    <h2>Отзывы клиентов (2ГИС)</h2>
+
+    <div class="reviews">
+
+      <div class="review fade-up fade-delay-1">
+        <div style="display:flex; gap:14px; align-items:center;">
+          <div style="width:48px;height:48px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;font-weight:700;color:#38bdf8;">AG</div>
+          <div>
+            <div class="name">Anatoliy Gir</div>
+            <small>4 января 2026 · 2ГИС</small>
+          </div>
         </div>
+        <div class="stars">★★★★★</div>
+        <p>Мне всё понравилось! Отношение к клиенту и профессиональный подход. Ставлю 5 из 5.</p>
+      </div>
+
+      <div class="review fade-up fade-delay-2">
+        <div style="display:flex; gap:14px; align-items:center;">
+          <div style="width:48px;height:48px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;font-weight:700;color:#38bdf8;">АК</div>
+          <div>
+            <div class="name">Алмаз Кабдулов</div>
+            <small>4 января 2026 · 2ГИС</small>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Сделал всё круто и быстро. За пол часа поставил Windows, Word и драйвера. Рекомендую.</p>
+      </div>
+
+      <div class="review fade-up fade-delay-3">
+        <div style="display:flex; gap:14px; align-items:center;">
+          <div style="width:48px;height:48px;border-radius:50%;background:#1e293b;display:flex;align-items:center;justify-content:center;font-weight:700;color:#38bdf8;">MC</div>
+          <div>
+            <div class="name">Мария Салько</div>
+            <small>27 января 2026 · 2ГИС</small>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p>Отличный мастер, всё объяснил и быстро починил компьютер. Работает честно.</p>
+      </div>
+
     </div>
 
-    <div class="section">
-        <h2>Контакты</h2>
-        <p>📞 WhatsApp: +7 700 232 09 83</p>
-        <p>📍 Города: Астана, Костанай, Павлодар</p>
-
-        <a class="btn" href="https://wa.me/77002320983?text=Здравствуйте!%20Хочу%20заказать%20услугу.">
-            Написать в WhatsApp
-        </a>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="https://2gis.kz/kostanaj/firm/70000001098630990/tab/reviews"
+         target="_blank"
+         style="display:inline-block;padding:14px 26px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:#38bdf8;text-decoration:none;font-weight:600;">
+        Смотреть все отзывы в 2ГИС →
+      </a>
     </div>
-
-    <div class="footer">
-        © PcFix Service — Ремонт компьютеров
-    </div>
+  </section>
 
 </div>
+
+<footer>
+  © PcFix Service · Астана · Костанай · Павлодар
+</footer>
 
 </body>
 </html>
